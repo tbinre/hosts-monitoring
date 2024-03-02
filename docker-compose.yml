@@ -1,0 +1,38 @@
+version: '3.2'
+
+
+services:
+  influxdb:
+    image: influxdb:1.8
+    container_name: influxdb
+    restart: always
+    ports:
+      - '8086:8086'
+    volumes:
+      - ./influxdb-storage:/var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=db0
+      - INFLUXDB_ADMIN_USER="admin"
+      - INFLUXDB_ADMIN_PASSWORD="CHANGE_ME_PLEASE_1"
+      - INFLUXDB_USER=user
+      - INFLUXDB_USER_PASSWORD="CHANGE_ME_PLEASE_2"
+      - INFLUXDB_HTTP_AUTH_ENABLED=false
+
+
+#  grafana:
+#    image: grafana/grafana:latest
+#    container_name: grafana
+#    restart: always
+#    volumes:
+#      - ./grafana-storage:/var/lib/grafana
+#      - ./grafana-provisioning:/etc/grafana/provisioning
+#    depends_on:
+#      - influxdb
+#    environment:
+#      - GF_SECURITY_ADMIN_USER=admin
+#      - GF_SECURITY_ADMIN_PASSWORD=oo8FS2qC17num0snPbYc
+##      - GF_SERVER_DOMAIN=grafana.domain.com
+##      - GF_SERVER_ROOT_URL=https://grafana.domain.com/
+##      - GF_SERVER_SERVE_FROM_SUB_PATH=true
+#    ports:
+#      - "3000:3000"
