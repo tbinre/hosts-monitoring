@@ -86,6 +86,14 @@ curl -sL https://raw.githubusercontent.com/tbinre/hosts-monitoring/main/telegraf
 > Збережіть собі цей файл та просто копіюйте на кожний хост, він однаковий для всіх.
 
 
+Після додавання (зміни) конфігу (пере)запустіть та додайте Telegraf до автозапуску.
+```shell
+systemctl enable telegraf
+systemctl restart telegraf
+```
+> Перед першим запуском Telegraf перевірте хостнейм хоста, він буде використовуватись в Grafana. Якщо хостнейм змінити потім то він звісно зміниться, але і старий з історії в InfluxDB нікуди не дінеться. Звісно можна буде видалити, але то морока ще та.
+> Встановити новий хостнейм: `hostnamectl hostname myhost01`
+
 ## Запуск дашборду Grafana
 Створіть обліковий запис на [Grafana Cloud](https://grafana.com/) або запустіть свою Grafana (про що було вище)
 
